@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shareable Resume</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+    header {
+      background-color: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
+    }
+    h1 {
+      font-size: 1.5rem;
+      color: #2c3e50;
+    }
+    .resume-section {
+      margin-bottom: 1.5rem;
+    }
+    button {
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #34495e;
+    }
+    .link-section {
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .link-section a {
+      color: #2c3e50;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Shareable Resume</h1>
+  </header>
+  <div class="container">
+    <div id="resumeContent" class="resume-section">
+      <h1>Ubaid ur rahman</h1>
+      <p>Email: usmanubadurrehman@gmail.com</p>
+      <p>Phone: +923170203221</p>
+      <h2>Professional Summary</h2>
+      <p>An experienced software developer with expertise in web technologies...</p>
+      <h2>Skills</h2>
+      <ul>
+        <li>JavaScript</li>
+        <li>TypeScript</li>
+        <li>React</li>
+        <li>Node.js</li>
+      </ul>
+      <h2>Experience</h2>
+      <p>Software Engineer at XYZ Corp, 2018-Present</p>
+      <h2>Education</h2>
+      <p>BSc in Computer Science, ABC University</p>
+    </div>
+    <button id="downloadBtn">Download Resume</button>
+    <div class="link-section">
+      <p>Share this resume: <a href="" id="shareableLink" target="_blank">Open Link</a></p>
+    </div>
+  </div>
+  <script type="module">
+    const downloadBtn = document.getElementById('downloadBtn');
+    const shareableLink = document.getElementById('shareableLink');
+    const resumeContent = document.getElementById('resumeContent');
+
+    downloadBtn.addEventListener('click', () => {
+      const blob = new Blob([resumeContent.innerHTML], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'resume.html';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    const createShareableLink = () => {
+      const blob = new Blob([resumeContent.innerHTML], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      shareableLink.href = url;
+    };
+
+    createShareableLink();
+  </script>
+</body>
+</html>
